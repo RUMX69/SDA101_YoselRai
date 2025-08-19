@@ -59,4 +59,8 @@ Linking screens in a logical way was confusing in the beginning.
 
 Solution: I mapped out the user flow on paper first, then recreated it step by step in Figma. Prototyping features helped me test how a user would move through the app.
 
-(Here, screenshots of the wireframe screens—like the home page, restaurant list, menu page, and checkout—should be included.)
+Screenshots of the wireframe  home page, restaurant list, menu page,account,Customer support,Search and checkout :
+
+![alt text](<Screenshot 2025-08-20 003938.png>) ![alt text](<Screenshot 2025-08-20 003919.png>)
+
+![alt text](<Screenshot 2025-08-20 004343.png>) ![alt text](<Screenshot 2025-08-20 004059.png>) ![alt text](<Screenshot 2025-08-20 004115.png>) ![alt text](<Screenshot 2025-08-20 004136.png>) ![alt text](<Screenshot 2025-08-20 004155.png>) ![alt text](<Screenshot 2025-08-20 004225.png>) ![alt text](<Screenshot 2025-08-20 004244.png>) ![alt text](<Screenshot 2025-08-20 004300.png>) ![alt text](<Screenshot 2025-08-20 004317.png>)
