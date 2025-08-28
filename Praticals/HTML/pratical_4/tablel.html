@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Table style</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f8f9fa;
+            margin: 40px;
+        }
+        table {
+            border-collapse: collapse;
+            width: 90%;
+            margin: 0 auto;
+            background: #fff;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        th, td {
+            padding: 14px 18px;
+            text-align: center;
+        }
+        th {
+            background: #1976d2;
+            color: #fff;
+            font-weight: bold;
+        }
+        tr:nth-child(even) {
+            background: #f1f7fd;
+        }
+        tr:hover {
+            background: #ffe0b2;
+        }
+        td {
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <h2 style="text-align:center;">Semester Grades Tracker</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Module</th>
+                <th>Assignment/Exam Name</th>
+                <th>Maximum Marks</th>
+                <th>Marks Obtained</th>
+                <th>Percentage</th>
+                <th>Grade</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>SDA101</td>
+                <td>Figma Design</td>
+                <td>10</td>
+                <td>7</td>
+                <td>70%</td>
+                <td>B</td>
+            </tr>
+            <tr>
+                <td>CSF101</td>
+                <td>Midterm Exam</td>
+                <td>50</td>
+                <td>42</td>
+                <td>84%</td>
+                <td>A</td>
+            </tr>
+            <tr>
+                <td>MAT205</td>
+                <td>Assignment 1</td>
+                <td>20</td>
+                <td>18</td>
+                <td>90%</td>
+                <td>A+</td>
+            </tr>
+            <tr>
+                <td>DZG101</td>
+                <td>Final Exam</td>
+                <td>60</td>
+                <td>48</td>
+                <td>80%</td>
+                <td>A</td>
+            </tr>
+            <tr>
+                <td>NWC101</td>
+                <td>Quiz</td>
+                <td>10</td>
+                <td>6</td>
+                <td>60%</td>
+                <td>C</td>
+            </tr>
+
+        </tbody>
+    </table>
+</body>
+</html>

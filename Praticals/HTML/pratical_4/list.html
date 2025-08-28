@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>List</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f8f9fa;
+        }
+        ol {
+            counter-reset: event-counter;
+            padding-left: 0;
+            max-width: 500px;
+            margin: 40px auto;
+        }
+        ol > li {
+            list-style: none;
+            background: #fff;
+            margin-bottom: 18px;
+            padding: 22px 28px 18px 60px;
+            border-radius: 10px;
+            position: relative;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+            transition: background 0.2s, color 0.2s;
+        }
+        ol > li::before {
+            counter-increment: event-counter;
+            content: "★ " counter(event-counter);
+            position: absolute;
+            left: 18px;
+            top: 22px;
+            font-size: 1.3em;
+            color: #ff9800;
+            font-weight: bold;
+        }
+        ol > li:hover {
+            background: #ffe0b2;
+            color: #333;
+        }
+        ol > li ul {
+            margin-top: 10px;
+            padding-left: 0;
+        }
+        ol > li ul li {
+            list-style: none;
+            padding: 5px 0 5px 28px;
+            position: relative;
+            color: #555;
+        }
+        ol > li ul li::before {
+            content: "•";
+            position: absolute;
+            left: 10px;
+            color: #2196f3;
+            font-size: 1.1em;
+        }
+        ol > li ul li:hover {
+            color: #1976d2;
+            background: #e3f2fd;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <ol>
+        <li>
+            Freshers' Day
+            <ul>
+                <li>Time: 10:00 AM</li>
+                <li>Location: Auditorium</li>
+            </ul>
+        </li>
+        <li>
+            Sports Day
+            <ul>
+                <li>Time: 9:00 AM</li>
+                <li>Location: College Ground</li>
+            </ul>
+        </li>
+        <li>
+            Cultural Fest
+            <ul>
+                <li>Time: 5:00 PM</li>
+                <li>Location: Auditorium</li>
+            </ul>
+        </li>
+        <li>
+            Science Exhibition
+            <ul>
+                <li>Time: 11:00 AM</li>
+                <li>Location: Science Block Hall</li>
+            </ul>
+        </li>
+        <li>
+            Annual Day
+            <ul>
+                <li>Time: 6:00 PM</li>
+                <li>Location: Auditorium</li>
+            </ul>
+        </li>
+    </ol>
+</body>
+</html>
