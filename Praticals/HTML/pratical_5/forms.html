@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forms</title>
+</head>
+<body>
+    <form action="/submit" method="post">
+        <h1>Hostel Room Maintenance Request Form</h1>
+        
+        <p>Personal Information Section</p>
+        <label for="fullname">Fullname:</label>
+        <input type="text"  id="fullname" name="fullname" placeholder="Enter your full name" pattern="[a-zA-Z ]{2-50}" required minlength="2" maxlength="50"><br><br>
+        <lable for="studentid">Student ID:</lable>
+        <input type="text" id="studentid" name="studentid" placeholder="02250521" pattern="[0-9]{8}" required minlength="8" maxlength="8"><br><br>
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="email" placeholder="student.cst@rub.edu.bt" required><br><br>
+        <lable for="phone">Phone Number:</lable>
+        <input type="tel" id="phone" name="phonr" placeholder="12345678" pattern="[0-9]{8}" required minlength="8" maxlength="8"><br><br>
+        
+        <p>Room Information Section</p>
+        <lable for="block">Block</lable>
+        <select type="select" id="block" name="block" required>
+            <option value="" disabled selected>Select your block</option>
+            <option value="Block A">Block A</option>
+            <option value="Block B">Block B</option>
+            <option value="Block C">Block C</option>
+            <option value="Block D">Block D</option>
+            <option value="RK">RK</option>
+        </select><br><br>
+        <lable for="room">Room Number</lable>
+        <input type="number" id="room" name="room" placeholder="Room number (e.g., 205)" required min="100" max="999"><br><br>
+        <lable for="floor">Floor Number</lable>
+        <input type="number" id="floor" name="floor" placeholder="Floor number" required min="1" max="10"><br><br>
+
+        <p>Issue Details Section</p>
+        <lable for="issue">Type of Issue</lable>
+        <select type="select" id="issue" name="issue" required>
+            <option value="" disabled selected>Select the type of issue</option>
+            <option value="Plumbing">Plumbing</option>
+            <option value="Electrical">Electrical</option>
+            <option value="Furniture">Furniture</option>
+            <option value="Infrastructure">Internet</option>
+            <option value="Cleaning">Cleaning</option>
+            <option value="Other">Other</option>
+        </select><br><br>
+        <p>Issue Priority</p>
+        <input type="radio" id="Emergency (Immediate attention required)" name="issue" value="Emergency (Immediate attention required)" >
+        <label for="Emergency (Immediate attention required)">Emergency (Immediate attention required)</label><br><br>
+        <input type="radio" id="High (Within 24 hours)" name="issue" value="High (Within 24 hours)">
+        <label for="High (Within 24 hours)">High (Within 24 hours)</label><br><br>
+        <input type="radio" id="Medium (Within 3 days)" name="issue" value="High (Within 24 hours)">
+        <label for="Medium (Within 3 days)">Medium (Within 3 days)</label><br><br>
+        <input type="radio" id="Low (Within a week)" name="issue" value="Low (Within a week)">
+        <label for="High (Within 24 hours)">High (Within 24 hours)</label><br><br>
+
+        <p>Issue Description</p>
+        <lable for="description">Description of the issue:</label><br>
+        <textarea id="description" name="description" rows="4" cols="50" placeholder="Provide a detailed description of the issue..." required minlength="10" maxlength="500"></textarea><br><br>
+
+</body>
+</html>
