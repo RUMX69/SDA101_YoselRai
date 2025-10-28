@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./st.css">
+  <link rel="stylesheet" href="./st.css">
+  
+  <style>
+   a,
+   button,
+   input,
+   select,
+   h1,
+   h2,
+   h3,
+   h4,
+   h5,
+   * {
+       box-sizing: border-box;
+       margin: 0;
+       padding: 0;
+       border: none;
+       text-decoration: none;
+       background: none;
+   
+       -webkit-font-smoothing: antialiased;
+   }
+   
+   menu, ol, ul {
+       list-style-type: none;
+       margin: 0;
+       padding: 0;
+   }
+
+   /* Interactive Styles */
+   html {
+       scroll-behavior: smooth;
+   }
+
+   .nav-link {
+       cursor: pointer;
+       transition: all 0.3s ease;
+       position: relative;
+   }
+
+   .nav-link::after {
+       content: '';
+       position: absolute;
+       width: 0;
+       height: 2px;
+       bottom: -5px;
+       left: 0;
+       background-color: #00ffdd;
+       transition: width 0.3s ease;
+   }
+
+   .nav-link:hover::after {
+       width: 100%;
+   }
+
+   .nav-link:hover {
+       color: #00ffdd !important;
+   }
+
+   .hire-me-btn {
+       cursor: pointer;
+       transition: all 0.3s ease;
+       position: relative;
+       overflow: hidden;
+   }
+
+   .hire-me-btn:hover {
+       transform: translateY(-2px);
+       box-shadow: 0 5px 15px rgba(0, 255, 221, 0.3);
+   }
+
+   .hire-me-btn::before {
+       content: '';
+       position: absolute;
+       top: 0;
+       left: -100%;
+       width: 100%;
+       height: 100%;
+       background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+       transition: left 0.5s;
+   }
+
+   .hire-me-btn:hover::before {
+       left: 100%;
+   }
+
+   .skill-card {
+       cursor: pointer;
+       transition: all 0.3s ease;
+   }
+
+   .skill-card:hover {
+       transform: translateY(-10px);
+       box-shadow: 0 10px 25px rgba(0, 255, 221, 0.2);
+   }
+
+   .project-card {
+       cursor: pointer;
+       transition: all 0.3s ease;
+       position: relative;
+       overflow: hidden;
+   }
+
+   .project-card:hover {
+       transform: translateY(-5px);
+       box-shadow: 0 10px 30px rgba(0, 255, 221, 0.3);
+   }
+
+   .project-card::before {
+       content: '';
+       position: absolute;
+       top: 0;
+       left: 0;
+       right: 0;
+       bottom: 0;
+       background: linear-gradient(45deg, rgba(0,255,221,0.1), transparent);
+       opacity: 0;
+       transition: opacity 0.3s ease;
+   }
+
+   .project-card:hover::before {
+       opacity: 1;
+   }
+
+   .social-icon {
+       cursor: pointer;
+       transition: all 0.3s ease;
+   }
+
+   .social-icon:hover {
+       transform: scale(1.2);
+       filter: brightness(1.5);
+   }
+
+   .download-btn {
+       cursor: pointer;
+       transition: all 0.3s ease;
+   }
+
+   .download-btn:hover {
+       background: #00ffdd !important;
+       color: #000000 !important;
+       transform: translateY(-2px);
+   }
+
+   /* Animation Classes */
+   @keyframes fadeInUp {
+       from {
+           opacity: 0;
+           transform: translateY(30px);
+       }
+       to {
+           opacity: 1;
+           transform: translateY(0);
+       }
+   }
+
+   @keyframes fadeIn {
+       from {
+           opacity: 0;
+       }
+       to {
+           opacity: 1;
+       }
+   }
+
+   .animate-fade-in {
+       animation: fadeIn 0.8s ease-out;
+   }
+
+   .animate-fade-in-up {
+       animation: fadeInUp 0.8s ease-out;
+   }
+
+   /* Scroll Progress Bar */
+   .scroll-progress {
+       position: fixed;
+       top: 0;
+       left: 0;
+       width: 0%;
+       height: 3px;
+       background: #00ffdd;
+       z-index: 1000;
+       transition: width 0.3s ease;
+   }
+
+   /* Back to Top Button */
+   .back-to-top {
+       position: fixed;
+       bottom: 30px;
+       right: 30px;
+       background: #00ffdd;
+       color: #000;
+       width: 50px;
+       height: 50px;
+       border-radius: 50%;
+       display: flex;
+       align-items: center;
+       justify-content: center;
+       cursor: pointer;
+       opacity: 0;
+       visibility: hidden;
+       transition: all 0.3s ease;
+       z-index: 1000;
+       font-size: 20px;
+   }
+
+   .back-to-top.show {
+       opacity: 1;
+       visibility: visible;
+   }
+
+   .back-to-top:hover {
+       transform: translateY(-3px);
+       box-shadow: 0 5px 15px rgba(0, 255, 221, 0.4);
+   }
+
+   /* Loading Animation */
+   .loading {
+       position: fixed;
+       top: 0;
+       left: 0;
+       width: 100%;
+       height: 100%;
+       background: #000;
+       display: flex;
+       align-items: center;
+       justify-content: center;
+       z-index: 9999;
+       transition: opacity 0.5s ease;
+   }
+
+   .loading-spinner {
+       width: 50px;
+       height: 50px;
+       border: 3px solid transparent;
+       border-top: 3px solid #00ffdd;
+       border-radius: 50%;
+       animation: spin 1s linear infinite;
+   }
+
+   @keyframes spin {
+       0% { transform: rotate(0deg); }
+       100% { transform: rotate(360deg); }
+   }
+
+   /* Typewriter Effect */
+   .typewriter {
+       overflow: hidden;
+       border-right: 2px solid #00ffdd;
+       white-space: nowrap;
+       animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
+   }
+
+   @keyframes typing {
+       from { width: 0 }
+       to { width: 100% }
+   }
+
+   @keyframes blink-caret {
+       from, to { border-color: transparent }
+       50% { border-color: #00ffdd }
+   }
+
+   /* Project Filter System */
+   .project-filters {
+       display: flex;
+       gap: 10px;
+       margin-bottom: 20px;
+       justify-content: center;
+   }
+
+   .filter-btn {
+       padding: 8px 16px;
+       background: rgba(39, 39, 39, 0.83);
+       color: #fff;
+       border: 1px solid rgba(217, 217, 217, 0.13);
+       border-radius: 20px;
+       cursor: pointer;
+       transition: all 0.3s ease;
+   }
+
+   .filter-btn:hover,
+   .filter-btn.active {
+       background: #00ffdd;
+       color: #000;
+   }
+
+   .project-item {
+       transition: all 0.3s ease;
+   }
+
+   .project-item.hidden {
+       display: none;
+   }
+  </style>
+  <title>Yosel Rai - Portfolio</title>
+</head>
+<body>
+  <!-- Loading Screen -->
+  <div class="loading" id="loading">
+      <div class="loading-spinner"></div>
+  </div>
+
+  <!-- Scroll Progress Bar -->
+  <div class="scroll-progress" id="scrollProgress"></div>
+
+  <!-- Back to Top Button -->
+  <div class="back-to-top" id="backToTop" onclick="scrollToTop()">
+      ↑
+  </div>
+
+  <div class="personal-profile-website">
+    <img class="rectangle-3" src="rectangle-30.png" />
+    <img class="group-6" src="group-60.svg" />
+    <div class="group-4">
+      <div class="mr-yosel-rai">
+        <span>
+          <span class="mr-yosel-rai-span">Mr.</span>
+          <span class="mr-yosel-rai-span2">Yosel rai</span>
+        </span>
+      </div>
+      <div class="software-engineer-ui-ux-designer typewriter">
+        Software Engineer / UI/UX Designer
+      </div>
+    </div>
+    <div class="ellipse-2">
+      <div class="ellipse-22"></div>
+    </div>
+    <img class="ellipse-3" src="ellipse-30.svg" />
+    <div class="group-5 hire-me-btn" onclick="scrollToSection('contact')">
+      <div class="rectangle-4"></div>
+      <div class="hire-me">Hire Me</div>
+    </div>
+    <div class="rectangle-5"></div>
+    <div class="rectangle-6">
+      <div class="rectangle-62"></div>
+    </div>
+    <div class="rectangle-7">
+      <div class="rectangle-62"></div>
+    </div>
+    <div class="rectangle-63">
+      <div class="rectangle-62"></div>
+    </div>
+    <div class="education">Education</div>
+    <div class="skills-technologies">Skills &amp; Technologies</div>
+    <div class="certifications-courses">Certifications &amp; Courses</div>
+    <div
+      class="bachelor-of-software-engineering-national-senior-certificate-grade-12"
+    >
+      <ul
+        class="bachelor-of-software-engineering-national-senior-certificate-grade-12-span"
+      >
+        <li>Bachelor of software engineering</li>
+        <li>National Senior Certificate [Grade 12]</li>
+      </ul>
+    </div>
+    <div
+      class="python-programming-html-css-figma-ui-ux-design-git-git-hub-version-control-networking-fundamentals"
+    >
+      <ul
+        class="python-programming-html-css-figma-ui-ux-design-git-git-hub-version-control-networking-fundamentals-span"
+      >
+        <li>Python Programming</li>
+        <li>HTML &amp; CSS</li>
+        <li>Figma UI/UX Design</li>
+        <li>Git &amp; GitHub Version Control</li>
+        <li>Networking Fundamentals</li>
+      </ul>
+    </div>
+    <div class="group-8">
+      <div class="component-1 skill-card" onclick="showSkillInfo('HTML')">
+        <div class="rectangle-8"></div>
+        <div class="rectangle-9"></div>
+        <img class="image-1" src="image-10.png" />
+        <div class="html">HTML</div>
+      </div>
+      <div class="component-2 skill-card" onclick="showSkillInfo('CSS')">
+        <div class="rectangle-8"></div>
+        <div class="rectangle-9"></div>
+        <img class="image" src="image0.png" />
+        <div class="html">CSS</div>
+      </div>
+      <div class="component-3 skill-card" onclick="showSkillInfo('Python')">
+        <div class="rectangle-8"></div>
+        <div class="rectangle-9"></div>
+        <img class="image" src="image1.png" />
+        <div class="html">Python</div>
+      </div>
+      <div class="component-5 skill-card" onclick="showSkillInfo('Tailwind CSS')">
+        <div class="rectangle-8"></div>
+        <div class="rectangle-9"></div>
+        <img class="image" src="image2.png" />
+        <div class="html">Tailwind CSS</div>
+      </div>
+      <div class="component-7 skill-card" onclick="showSkillInfo('Git')">
+        <div class="rectangle-8"></div>
+        <div class="rectangle-9"></div>
+        <img class="image" src="image3.png" />
+        <div class="html">Git</div>
+      </div>
+      <div class="component-8 skill-card" onclick="showSkillInfo('Figma')">
+        <div class="rectangle-8"></div>
+        <div class="rectangle-9"></div>
+        <img class="image" src="image4.png" />
+        <div class="html">Figma</div>
+      </div>
+    </div>
+    <div class="rectangle-64">
+      <div class="rectangle-62"></div>
+    </div>
+    <div
+      class="i-m-yosel-rai-a-passionate-software-engineering-student-at-the-college-of-science-and-technology-who-loves-turning-ideas-into-digital-experiences-with-skills-in-python-html-css-figma-git-and-git-hub-i-enjoy-crafting-responsive-user-centered-websites-that-look-great-and-work-seamlessly-i-m-driven-by-curiosity-and-creativity-always-exploring-new-technologies-experimenting-with-design-and-building-projects-that-blend-functionality-with-clean-modern-design-for-me-coding-isn-t-just-about-logic-it-s-about-creating-something-meaningful-and-impactful"
+    >
+      I'm Yosel Rai, a passionate Software Engineering student at The College of
+      Science and Technology who loves turning ideas into digital experiences.
+      With skills in Python, HTML, CSS, Figma, Git, and GitHub, I enjoy crafting
+      responsive, user-centered websites that look great and work seamlessly.
+      <br />
+      I'm driven by curiosity and creativity—always exploring new technologies,
+      experimenting with design, and building projects that blend functionality
+      with clean, modern design. For me, coding isn't just about logic—it's about
+      creating something meaningful and impactful.
+    </div>
+    <div class="about-me">About Me</div>
+    <div class="rectangle-52"></div>
+    <div class="my-projects">My Projects</div>
+    
+    <!-- Project Filters -->
+    <div class="project-filters" style="position: absolute; left: 100px; top: 1950px;">
+      <button class="filter-btn active" onclick="filterProjects('all')">All Projects</button>
+      <button class="filter-btn" onclick="filterProjects('design')">Design</button>
+      <button class="filter-btn" onclick="filterProjects('development')">Development</button>
+    </div>
+
+    <div class="group-9">
+      <div class="rectangle-11"></div>
+      <div class="design-projects">Design Projects</div>
+      <div class="frame-6">
+        <div class="frame-2 project-card project-item" data-category="design" onclick="openProjectModal('grade-tracker')">
+          <div class="image2">
+            <img class="image3" src="image6.png" />
+          </div>
+          <div class="bdh-website">Grade Tracker Web App</div>
+        </div>
+        <div class="frame-3 project-card project-item" data-category="design" onclick="openProjectModal('student-profile')">
+          <div class="image2">
+            <img class="image3" src="image8.png" />
+          </div>
+          <div class="bdh-website">Student Profile Website</div>
+        </div>
+        <div class="frame-4 project-card project-item" data-category="design" onclick="openProjectModal('portfolio')">
+          <div class="image2">
+            <img class="image3" src="image10.png" />
+          </div>
+          <div class="bdh-website">Portfolio Web Page</div>
+        </div>
+        <div class="frame-1 project-card project-item" data-category="design" onclick="openProjectModal('room-maintenance')">
+          <div class="image2">
+            <img class="image3" src="image12.png" />
+          </div>
+          <div class="bdh-website">Room Maintenance Form Web App</div>
+        </div>
+      </div>
+    </div>
+    <div class="group-10">
+      <div class="rectangle-10"></div>
+      <div class="development-projects">Development Projects</div>
+      <div class="frame-5">
+        <div class="frame-12 project-card project-item" data-category="development" onclick="openProjectModal('shopify')">
+          <div class="image2">
+            <img class="image3" src="image14.png" />
+          </div>
+          <div class="bdh-website">Shopify</div>
+        </div>
+        <div class="frame-22 project-card project-item" data-category="development" onclick="openProjectModal('food-delivery')">
+          <div class="image2">
+            <img class="image3" src="image16.png" />
+          </div>
+          <div class="bdh-website">Food Delivery</div>
+        </div>
+        <div class="frame-32 project-card project-item" data-category="development" onclick="openProjectModal('amazon')">
+          <div class="image2">
+            <img class="image3" src="image18.png" />
+          </div>
+          <div class="bdh-website">Amazon</div>
+        </div>
+        <div class="frame-42 project-card project-item" data-category="development" onclick="openProjectModal('youtube')">
+          <div class="image2">
+            <img class="image3" src="image20.png" />
+          </div>
+          <div class="bdh-website">YouTube</div>
+        </div>
+      </div>
+    </div>
+    <div class="rectangle-12"></div>
+    <div class="contact-me2">Contact Me</div>
+    <div class="frame-7" onclick="sendEmail()">
+      <img class="mail" src="mail0.svg" />
+      <div class="emtyabekana-gmail-com">02250381.cst@rub.edu.bt</div>
+    </div>
+    <div class="frame-8 social-icon" onclick="openSocial('linkedin')">
+      <img class="linkedin" src="linkedin0.svg" />
+    </div>
+    <div class="frame-10 social-icon" onclick="openSocial('twitter')">
+      <img class="twitter" src="twitter0.svg" />
+    </div>
+    <div class="frame-9 social-icon" onclick="openSocial('github')">
+      <img class="github" src="github0.svg" />
+    </div>
+    <div class="frame-11 social-icon" onclick="openSocial('instagram')">
+      <img class="instagram" src="instagram0.svg" />
+    </div>
+    <div class="frame-122 social-icon" onclick="openSocial('facebook')">
+      <img class="facebook" src="facebook0.svg" />
+    </div>
+    <div class="rectangle-13"></div>
+    <div class="nav-bar">
+      <div class="rectangle-1"></div>
+    </div>
+    <div class="group-82">
+      <div class="home">
+        <div class="home2 nav-link" onclick="scrollToSection('home')">Home</div>
+      </div>
+      <div class="home3">
+        <div class="home4 nav-link" onclick="scrollToSection('about')">About</div>
+      </div>
+      <div class="home5">
+        <div class="home6 nav-link" onclick="scrollToSection('projects')">Projects</div>
+      </div>
+      <div class="home7">
+        <div class="home8 nav-link" onclick="scrollToSection('contact')">Contact</div>
+      </div>
+    </div>
+    <div class="group-11 download-btn" onclick="downloadResume()">
+      <div class="rectangle-2"></div>
+      <div class="download-resume">Download Profile</div>
+    </div>
+  </div>
+
+  <!-- Project Modal -->
+  <div id="projectModal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 1000; align-items: center; justify-content: center;">
+    <div style="background: rgba(39, 39, 39, 0.95); padding: 30px; border-radius: 15px; max-width: 600px; width: 90%; border: 1px solid rgba(0,255,221,0.3);">
+      <h3 id="modalTitle" style="color: #00ffdd; margin-bottom: 15px;"></h3>
+      <p id="modalDescription" style="color: #fff; margin-bottom: 20px;"></p>
+      <button onclick="closeProjectModal()" style="background: #00ffdd; color: #000; padding: 10px 20px; border-radius: 5px; cursor: pointer;">Close</button>
+    </div>
+  </div>
+
+  <script>
+   // Loading screen
+   window.addEventListener('load', function() {
+       setTimeout(function() {
+           document.getElementById('loading').style.opacity = '0';
+           setTimeout(function() {
+               document.getElementById('loading').style.display = 'none';
+           }, 500);
+       }, 1000);
+   });
+
+   // Scroll progress bar
+   window.addEventListener('scroll', function() {
+       const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+       const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+       const scrolled = (winScroll / height) * 100;
+       document.getElementById('scrollProgress').style.width = scrolled + '%';
+
+       // Show/hide back to top button
+       const backToTop = document.getElementById('backToTop');
+       if (winScroll > 300) {
+           backToTop.classList.add('show');
+       } else {
+           backToTop.classList.remove('show');
+       }
+   });
+
+   // Smooth scrolling
+   function scrollToSection(section) {
+       let targetElement;
+       switch(section) {
+           case 'home':
+               targetElement = document.querySelector('.personal-profile-website');
+               break;
+           case 'about':
+               targetElement = document.querySelector('.about-me');
+               break;
+           case 'projects':
+               targetElement = document.querySelector('.my-projects');
+               break;
+           case 'contact':
+               targetElement = document.querySelector('.contact-me2');
+               break;
+       }
+       if (targetElement) {
+           targetElement.scrollIntoView({ behavior: 'smooth' });
+       }
+   }
+
+   function scrollToTop() {
+       window.scrollTo({ top: 0, behavior: 'smooth' });
+   }
+
+   // Project filtering
+   function filterProjects(category) {
+       const projects = document.querySelectorAll('.project-item');
+       const filterBtns = document.querySelectorAll('.filter-btn');
+       
+       // Update active button
+       filterBtns.forEach(btn => btn.classList.remove('active'));
+       event.target.classList.add('active');
+       
+       // Filter projects
+       projects.forEach(project => {
+           if (category === 'all' || project.dataset.category === category) {
+               project.classList.remove('hidden');
+           } else {
+               project.classList.add('hidden');
+           }
+       });
+   }
+
+   // Project modal
+   function openProjectModal(project) {
+       const modal = document.getElementById('projectModal');
+       const title = document.getElementById('modalTitle');
+       const description = document.getElementById('modalDescription');
+       
+       const projectData = {
+           'grade-tracker': {
+               title: 'Grade Tracker Web App',
+               desc: 'A comprehensive web application for tracking student grades and academic performance with intuitive visualizations.'
+           },
+           'student-profile': {
+               title: 'Student Profile Website',
+               desc: 'Dynamic student profile system with interactive elements and responsive design.'
+           },
+           'portfolio': {
+               title: 'Portfolio Web Page',
+               desc: 'Modern portfolio website showcasing projects and skills with smooth animations.'
+           },
+           'room-maintenance': {
+               title: 'Room Maintenance Form Web App',
+               desc: 'Efficient room maintenance request system with form validation and status tracking.'
+           },
+           'shopify': {
+               title: 'Shopify Clone',
+               desc: 'E-commerce platform implementation with product management and shopping cart functionality.'
+           },
+           'food-delivery': {
+               title: 'Food Delivery App',
+               desc: 'Food ordering and delivery application with real-time tracking and payment integration.'
+           },
+           'amazon': {
+               title: 'Amazon Clone',
+               desc: 'E-commerce website replica with user authentication and product search features.'
+           },
+           'youtube': {
+               title: 'YouTube Clone',
+               desc: 'Video streaming platform with playlist management and user interaction features.'
+           }
+       };
+       
+       title.textContent = projectData[project].title;
+       description.textContent = projectData[project].desc;
+       modal.style.display = 'flex';
+   }
+
+   function closeProjectModal() {
+       document.getElementById('projectModal').style.display = 'none';
+   }
+
+   // Skill information
+   function showSkillInfo(skill) {
+       const skillInfo = {
+           'HTML': 'Proficient in semantic HTML5, accessibility standards, and modern web structure.',
+           'CSS': 'Expert in CSS3, Flexbox, Grid, animations, and responsive design principles.',
+           'Python': 'Experienced in Python programming, data structures, and backend development.',
+           'Tailwind CSS': 'Skilled in utility-first CSS framework for rapid UI development.',
+           'Git': 'Proficient in version control, branching strategies, and collaborative workflows.',
+           'Figma': 'Expert in UI/UX design, prototyping, and design system creation.'
+       };
+       
+       alert(`${skill}: ${skillInfo[skill]}`);
+   }
+
+   // Social media links
+   function openSocial(platform) {
+       const urls = {
+           'linkedin': 'https://linkedin.com/in/yourprofile',
+           'twitter': 'https://twitter.com/yourprofile',
+           'github': 'https://github.com/yourprofile',
+           'instagram': 'https://instagram.com/yourprofile',
+           'facebook': 'https://facebook.com/yourprofile'
+       };
+       
+       window.open(urls[platform], '_blank');
+   }
+
+   // Email function
+   function sendEmail() {
+       window.location.href = 'mailto:02250381.cst@rub.edu.bt';
+   }
+
+   // Download resume function
+   function downloadResume() {
+       // Create a simple PDF download simulation
+       const link = document.createElement('a');
+       link.href = '#'; // Replace with actual resume URL
+       link.download = 'Yosel_Rai_Resume.pdf';
+       document.body.appendChild(link);
+       link.click();
+       document.body.removeChild(link);
+       
+       alert('Downloading resume... (This is a demo)');
+   }
+
+   // Add animation classes on scroll
+   const observerOptions = {
+       threshold: 0.1,
+       rootMargin: '0px 0px -50px 0px'
+   };
+
+   const observer = new IntersectionObserver((entries) => {
+       entries.forEach(entry => {
+           if (entry.isIntersecting) {
+               entry.target.style.opacity = '1';
+               entry.target.style.transform = 'translateY(0)';
+           }
+       });
+   }, observerOptions);
+
+   // Observe elements for animation
+   document.addEventListener('DOMContentLoaded', function() {
+       const animatableElements = document.querySelectorAll('.skill-card, .project-card, .group-4, .about-me');
+       animatableElements.forEach(el => {
+           el.style.opacity = '0';
+           el.style.transform = 'translateY(30px)';
+           el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+           observer.observe(el);
+       });
+   });
+  </script>
+</body>
+</html>
